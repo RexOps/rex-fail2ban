@@ -46,50 +46,50 @@ task "setup", sub {
 };
 
 resource "action", sub {
-  my $name = resource_name;
-  my $ensure = param_lookup "ensure", "present";
+  my $name    = resource_name;
+  my $ensure  = param_lookup "ensure", "present";
   my $content = param_lookup "content", "";
-  
+
   file "/etc/fail2ban/action.d/$name.conf",
-    ensure  => $ensure,
-    content => $content,
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0644',
+    ensure    => $ensure,
+    content   => $content,
+    owner     => 'root',
+    group     => 'root',
+    mode      => '0644',
     on_change => sub {
-      service fail2ban => "reload";
+    service fail2ban => "reload";
     };
 };
 
 resource "filter", sub {
-  my $name = resource_name;
-  my $ensure = param_lookup "ensure", "present";
+  my $name    = resource_name;
+  my $ensure  = param_lookup "ensure", "present";
   my $content = param_lookup "content", "";
-  
+
   file "/etc/fail2ban/filter.d/$name.conf",
-    ensure  => $ensure,
-    content => $content,
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0644',
+    ensure    => $ensure,
+    content   => $content,
+    owner     => 'root',
+    group     => 'root',
+    mode      => '0644',
     on_change => sub {
-      service fail2ban => "reload";
+    service fail2ban => "reload";
     };
 };
 
 resource "jail", sub {
-  my $name = resource_name;
-  my $ensure = param_lookup "ensure", "present";
+  my $name    = resource_name;
+  my $ensure  = param_lookup "ensure", "present";
   my $content = param_lookup "content", "";
-  
+
   file "/etc/fail2ban/jail.d/$name.conf",
-    ensure  => $ensure,
-    content => $content,
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0644',
+    ensure    => $ensure,
+    content   => $content,
+    owner     => 'root',
+    group     => 'root',
+    mode      => '0644',
     on_change => sub {
-      service fail2ban => "reload";
+    service fail2ban => "reload";
     };
 };
 
