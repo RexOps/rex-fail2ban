@@ -14,6 +14,12 @@ use Rex::Commands::Pkg;
 use Rex::Commands::Service;
 use Rex::Commands::File;
 
+eval {
+  # For Rex > 1
+  use Rex::Commands::Template;
+  use Rex::Commands::Task;
+};
+
 use Rex::Helper::Rexfile::ParamLookup;
 
 task "setup", sub {
